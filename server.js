@@ -4,6 +4,8 @@ import cookieSession from 'cookie-session'
 
 import * as DB from './app/config/db.config.js'
 
+import routes from './app/routes/index.js'
+
 const app = express()
 
 app.use(cors())
@@ -28,12 +30,7 @@ app.get("/", (req, res) => {
 })
 
 // routes
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
-  next()
-})
-app.use('/api/auth', (await import("./app/routes/auth.routes.js")).default)
-app.use('/api/test', (await import("./app/routes/user.routes.js")).default)
+await routes(app)
 
 await DB.init()
 
