@@ -5,10 +5,7 @@ import User from '../../repository/users/user.model.js'
 
 export default async function signin (req, res) {
     try {
-      const user = await User.findOne({ username: req.body.username }).populate(
-        'roles',
-        '-__v'
-      )
+      const user = await User.findOne({ username: req.body.username })
   
       if (!user) {
         return res.status(404).send({ message: 'User Not found.' })
@@ -29,15 +26,13 @@ export default async function signin (req, res) {
         expiresIn: 86400, // 24 hours
       })
   
-      const authorities = user.roles.map((role) => 'ROLE_' + role.name.toUpperCase())
-  
       req.session.token = token
   
       res.status(200).send({
         id: user._id,
         username: user.username,
         email: user.email,
-        roles: authorities,
+        role: user.role,
       })
     } catch (err) {
       res.status(500).send({ message: err.message })

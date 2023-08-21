@@ -1,6 +1,9 @@
 // Shared params
 const config = {
-    ROLES: ['user', 'admin', 'moderator']
+    ROLES: {
+        'USER': 'user',
+        'ADMIN': 'admin',
+    }
 }
 
 export default config
