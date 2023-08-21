@@ -1,10 +1,13 @@
 import express from 'express'
 import cors from 'cors'
 import cookieSession from 'cookie-session'
+import dotenv from 'dotenv'
 
 import * as DB from './app/config/db.config.js'
 
 import routes from './app/routes/index.js'
+
+dotenv.config()
 
 const app = express()
 

@@ -2,9 +2,9 @@ import db from './db.js'
 import Role from '../repository/roles/role.model.js'
 export async function init() {
   const dbConfig = {
-    HOST: '0.0.0.0',
-    PORT: 27017,
-    DB: 'igor_db' // TODO change to ur DB
+    HOST: process.env.HOST,
+    PORT: process.env.DB_PORT,
+    DB: process.env.DB // TODO change to ur DB
   }
   
   try {
