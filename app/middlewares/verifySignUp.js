@@ -1,7 +1,5 @@
-import db from '../models/index.js'
-import User from '../models/user.model.js'
-
-const { ROLES } = db
+import shared from '../config/shared.js'
+import User from './../repository/users/user.model.js'
 
 export const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
@@ -24,7 +22,7 @@ export const checkDuplicateUsernameOrEmail = async (req, res, next) => {
 export const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (const role of req.body.roles) {
-      if (!ROLES.includes(role)) {
+      if (!shared.config.ROLES.includes(role)) {
         return res.status(400).send({ message: `Failed! Role ${role} does not exist!` })
       }
     }

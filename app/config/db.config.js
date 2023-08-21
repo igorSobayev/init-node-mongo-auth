@@ -1,5 +1,5 @@
-import db from './../models/index.js'
-import Role from './../models/role.model.js'
+import db from './db.js'
+import Role from '../repository/roles/role.model.js'
 export async function init() {
   const dbConfig = {
     HOST: '0.0.0.0',
